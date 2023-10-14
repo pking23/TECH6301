@@ -1,1 +1,51 @@
-Hello
+
+
+class BankAccount(object):
+    def __init__(self, username, accountType, balance = 0):
+        self.username = username
+        self.accountType = accountType
+        self.balance = balance
+        self.userid = self.create_user_id()
+        self.filename = str(self.accountNumber)+"_"+self.accountType+"_"+self.username+".txt"
+
+    def create_user_id(self):
+        pass
+    def deposit_money(self, total):
+        self.balance += total
+        file = open(self.statement_file, "a")
+        file.write("+" + total)
+        file.close()
+
+    def withdraw_money(self, total):
+        self.balance -= total
+        file = open(self.statement_file, "a")
+        file.write("-" + total)
+        file.close()
+
+    def create_account(self):
+        pass
+
+    def get_account_balance(self):
+        print(self.balance)
+
+    def get_account_type(self):
+        print(self.accountType)
+
+    def get_account_number(self):
+        print(self.get_account_number())
+
+    def get_username(self):
+        print(self.username)
+
+    def get_transaction_history(self):
+        file = open(self.statement_file, "r")
+        print(file.read())
+        file.closed
+
+account1 = BankAccount("Phill", "Checking")
+account2 = BankAccount("King", "Saving")
+
+account1.deposit_money(100)
+account1.withdraw_money(50)
+account2.depost_money(10)
+account2.withdraw_money(1)
