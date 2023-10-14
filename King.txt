@@ -1,50 +1,54 @@
+import random #import random module for creating account numbers
 
 
-class BankAccount(object):
+class BankAccount(object): # create class BankAccount and declare methods/functions
     def __init__(self, username, accountType, balance = 0):
         self.username = username
         self.accountType = accountType
         self.balance = balance
-        self.userid = self.create_user_id()
+        self.userid = create_user_id()
+        self.accountNumber = accountNumber
         self.filename = str(self.accountNumber)+"_"+self.accountType+"_"+self.username+".txt"
 
-    def create_user_id(self):
-        pass
-    def deposit_money(self, total):
-        self.balance += total
-        file = open(self.statement_file, "a")
-        file.write("+" + total)
-        file.close()
+    def deposit_money(self, total): #create function for depositing money
+        if total > 0: #validate that the user is depositing a value greater than 0
+            self.balance += total
+            file = open(self.statement_file, "a")
+            file.write("+" + total)
+            file.close()
 
-    def withdraw_money(self, total):
-        self.balance -= total
-        file = open(self.statement_file, "a")
-        file.write("-" + total)
-        file.close()
+    def withdraw_money(self, total): #function to withdraw
+        if self.balance > 0: #validate that the total balance in the user's account is over 0, else they would not be able to withdraw any money
+            self.balance -= total
+            file = open(self.statement_file, "a")
+            file.write("-" + total)
+            file.close()
 
-    def create_account(self):
-        pass
+    def create_account(self): #function to create account
+        self.accountNumber = str(username + random.randint(100, 999)) #account number will be the string of the user's username plus a random 3 digit number between 100 + 999
 
-    def get_account_balance(self):
+    def get_account_balance(self): #function to return the account balance of the user's account
         print(self.balance)
 
-    def get_account_type(self):
+    def get_account_type(self): #function to return the account type of the user's account
         print(self.accountType)
 
-    def get_account_number(self):
+    def get_account_number(self): #function to return the account number of the user's account
         print(self.get_account_number())
 
-    def get_username(self):
+    def get_username(self): #function to return the username of the user's account
         print(self.username)
 
-    def get_transaction_history(self):
+    def get_transaction_history(self): #function that will return the transaction history by reading the transaction file that has been written to above
         file = open(self.statement_file, "r")
         print(file.read())
         file.closed
 
+#example data for creating bank accounts by specifying the username/account type
 account1 = BankAccount("Phill", "Checking")
 account2 = BankAccount("King", "Saving")
 
+#sample transactions depositing/withdrawing to/from both accounts created above
 account1.deposit_money(100)
 account1.withdraw_money(50)
 account2.depost_money(10)
